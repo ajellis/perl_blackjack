@@ -2,6 +2,17 @@ use strict;
 use warnings;
 use feature qw(say);
 use List::Util qw(shuffle);
+use DBI;
+
+my $driver   = "SQLite";
+my $database = "test.db";
+my $dsn = "DBI:$driver:dbname=$database";
+my $userid = "";
+my $password = "";
+my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 })
+                      or die $DBI::errstr;
+
+print "Opened database successfully\n";
 
 our @player_cards = ();
 our @dealer_cards = ();
